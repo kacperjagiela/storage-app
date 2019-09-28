@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from '../Home/Home';
-import Managment from '../Managment/Managment';
+import Managment from '../Managment/Management';
 
 export default class App extends React.Component {
 	render() {

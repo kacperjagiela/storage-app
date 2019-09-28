@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getAllProducts, removeProduct } from '../Reusable/services';
+import { getAllProducts } from '../Reusable/services';
 
 
 class Home extends React.Component {
@@ -13,16 +13,9 @@ class Home extends React.Component {
 
 	fetchData = async () => {
 		await getAllProducts().then((res) => {
-			console.log(res);
 			this.setState({
 				items: res.data,
 			});
-		});
-	}
-
-	deleteProduct = async (id) => {
-		await removeProduct(id).then((res) => {
-			if (res.data) this.fetchData();
 		});
 	}
 
@@ -35,8 +28,8 @@ class Home extends React.Component {
 						<div className='home-product' key={item.id}>
 							<p>
 								{`name: ${item.name} description: ${item.description} quantity: ${item.quantity} unit: ${item.unit}`}
+								<button type='button' onClick={() => this.deleteProduct(item.id)}>Delete</button>
 							</p>
-							<button type='button' onClick={() => this.deleteProduct(item.id)}>Delete</button>
 						</div>
 					))
 				}
