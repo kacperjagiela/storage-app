@@ -1,15 +1,60 @@
 import * as React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import Home from '../Home/Home';
-import Managment from '../Managment/Management';
+import { Layout, Menu } from 'antd';
+import { Link, withRouter } from 'react-router-dom';
+import Switcher from '../Switcher/Switcher';
 
-export default class App extends React.Component {
-	render() {
-		return (
-			<Switch>
-				<Route path='/' exact render={() => <Home onAdd={this.onAdd} />} />
-				<Route path='/manage' render={() => <Managment log={this.log} />} />
-			</Switch>
-		);
+const { Header, Content, Footer } = Layout;
+
+const App = ({ history }) => {
+	const { pathname } = history.location;
+	let subPath = '';
+	if (pathname.indexOf('/') === pathname.lastIndexOf('/')) {
+		subPath = pathname.replace('/', '');
+	} else {
+		subPath = pathname.substring(pathname.indexOf('/') + 1, pathname.lastIndexOf('/'));
 	}
-}
+	return (
+		<Layout style={{ minHeight: '100vh' }}>
+			<Header>
+				<Menu
+					theme="dark"
+					mode="horizontal"
+					defaultSelectedKeys={[subPath]}
+					style={{ lineHeight: '64px' }}
+				>
+					<Menu.Item key="manage">
+						<Link to='/manage'>
+							Manage products
+						</Link>
+					</Menu.Item>
+					<Menu.Item key="all-categories">
+						<Link to='/all-categories'>
+							All categories
+						</Link>
+					</Menu.Item>
+					<Menu.Item key="add-product">
+						<Link to='/add-product'>
+							Add product
+						</Link>
+					</Menu.Item>
+					<Menu.Item key="add-category">
+						<Link to='/add-category'>
+							Add category
+						</Link>
+					</Menu.Item>
+				</Menu>
+			</Header>
+			<Content style={{
+				width: '100%', height: '100%',
+			}}
+			>
+				<Switcher />
+			</Content>
+			<Footer style={{ width: '100%', textAlign: 'center' }}>
+				Created by Kacper Jagieła
+			</Footer>
+		</Layout>
+	);
+};
+
+export default withRouter(App);
