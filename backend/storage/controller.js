@@ -1,6 +1,8 @@
+const products = require('./products/controller.js');
+const categories = require('./categories/controller.js');
+
 module.exports = (app, db) => {
-	app.get('/', (req, res) => {
-		res.status(200);
-		res.send('git');
-	});
-}
+	products(app, db);
+	categories(app, db);
+};
+

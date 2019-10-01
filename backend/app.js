@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+require('dotenv').config();
 
 const Database = require('./database/database.js');
 const controller = require('./storage/controller.js');
@@ -22,7 +23,7 @@ app.use((request, response, next) => {
 	next();
 });
 app.use(cors({
-	origin: 'http://localhost:3000',
+	origin: '*',
 	credentials: true
 }))
 

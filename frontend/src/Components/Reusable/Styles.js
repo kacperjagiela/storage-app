@@ -10,7 +10,7 @@ export const StyledForm = styled.div`
 	width: 100vw;
 	height: 100%;
 	background-color: transparent;
-	text-align: center;
+	text-align:center;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -20,7 +20,7 @@ export const StyledForm = styled.div`
 `;
 
 export const StyledContent = styled(Content)`
-	min-height: 100vh;
+	min-height: 100%;
 	width: 100%;
 	padding-left: 20%;
 	padding-right: 20%;

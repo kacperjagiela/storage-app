@@ -6,33 +6,33 @@ import Switcher from '../Switcher/Switcher';
 const { Header, Content, Footer } = Layout;
 
 const App = ({ history }) => {
-	const { pathname } = history.location;
-	let subPath = '';
-	if (pathname.indexOf('/') === pathname.lastIndexOf('/')) {
-		subPath = pathname.replace('/', '');
-	} else {
-		subPath = pathname.substring(pathname.indexOf('/') + 1, pathname.lastIndexOf('/'));
-	}
+	const path = history.location.pathname;
+
 	return (
 		<Layout style={{ minHeight: '100vh' }}>
 			<Header>
 				<Menu
-					theme="dark"
-					mode="horizontal"
-					defaultSelectedKeys={[subPath]}
+					theme='dark'
+					mode='horizontal'
+					defaultSelectedKeys={[path]}
 					style={{ lineHeight: '64px' }}
 				>
-					<Menu.Item key="manage">
+					<Menu.Item key='/shop'>
+						<Link to='/shop'>
+							Shop
+						</Link>
+					</Menu.Item>
+					<Menu.Item key='/manage'>
 						<Link to='/manage'>
 							Manage products
 						</Link>
 					</Menu.Item>
-					<Menu.Item key="all-categories">
+					<Menu.Item key='/all-categories'>
 						<Link to='/all-categories'>
 							All categories
 						</Link>
 					</Menu.Item>
-					<Menu.Item key="add-product">
+					<Menu.Item key='/add-product'>
 						<Link to='/add-product'>
 							Add product
 						</Link>
