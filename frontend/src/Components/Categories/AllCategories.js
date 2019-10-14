@@ -13,8 +13,15 @@ const AllCategories = () => {
 			getAllCategories()
 				.then((res) => {
 					if (res.status === 200) {
-						res.data.sort();
-						setData(res.data);
+						setData(res.data.sort((a, b) => {
+							if (a.name > b.name) {
+								return 1;
+							}
+							if (a.name < b.name) {
+								return -1;
+							}
+							return 0;
+						}));
 						setLoading(false);
 					}
 				})

@@ -5,8 +5,21 @@ module.exports = (app, db) => {
 				res.status(200);
 				res.send(result);
 			} else {
-				res.status(404);
+				res.status(500);
 				res.send('oops');
+			}
+		});
+	});
+
+	app.post('/add-category', (req, res) => {
+		console.log(req.body);
+		db.addCategory(req.body, (err, result) => {
+			if (!err) {
+				res.status(200);
+				res.send(result);
+			} else {
+				res.status(500);
+				res.send(result);
 			}
 		});
 	});

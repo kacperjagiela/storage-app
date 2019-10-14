@@ -37,12 +37,11 @@ const AddProduct = ({ form }) => {
 		form.validateFields((err, values) => {
 			if (!err) {
 				addProduct(values)
-					.then((res) => {
-						if (res.status === 200) {
-							message.success('Product added successfully.', 1, () => form.resetFields());
-						} else {
-							message.error('Something went wrong!', 1, () => form.resetFields());
-						}
+					.then(() => {
+						message.success('Product added successfully.', 1, () => form.resetFields());
+					})
+					.catch(() => {
+						message.error('Something went wrong!', 1, () => form.resetFields());
 					});
 			}
 			setButtonLoading(false);
