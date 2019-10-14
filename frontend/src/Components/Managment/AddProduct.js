@@ -39,14 +39,13 @@ const AddProduct = ({ form }) => {
 				addProduct(values)
 					.then((res) => {
 						if (res.status === 200) {
-							message.success('Product added successfully.', 1, () => fetchData());
+							message.success('Product added successfully.', 1, () => form.resetFields());
 						} else {
-							message.error('Something went wrong!', 1, () => fetchData());
+							message.error('Something went wrong!', 1, () => form.resetFields());
 						}
 					});
 			}
 			setButtonLoading(false);
-			fetchData();
 		});
 	};
 
@@ -69,7 +68,6 @@ const AddProduct = ({ form }) => {
 						<Form.Item label='Category:'>
 							{form.getFieldDecorator('category', {
 								rules: [{ required: true, message: 'Please choose product category!' }],
-								initialValue: categories[0].name,
 							})(
 								<Select>
 									{categories.map(category => (

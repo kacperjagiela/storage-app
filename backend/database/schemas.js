@@ -6,7 +6,7 @@ const categorySchema = new mongoose.Schema({
 
 const productSchema = new mongoose.Schema({
 	name: String,
-	category_id: String,
+	category: String,
 	quantity: Number,
 	price: Number
 }, { collection: 'storage_products' });

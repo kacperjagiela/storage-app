@@ -2,21 +2,6 @@ const mongoose = require('mongoose');
 const models = require('./models.js');
 
 class Database {
-	getAllProducts(callback) {
-		mongoose.connect(process.env.STORAGE_APP_URI, { useNewUrlParser: true, reconnectTries: Number.MAX_VALUE, reconnectInterval: 500 }).then(
-			async () => {
-				await models.Product.find({}, (err, products) => {
-					if (err) {
-						callback(err, []);
-					} else {
-						callback(null, products);
-					}
-					mongoose.connection.close();
-				})
-			}
-		).catch(err => console.log(err));
-	}
-
 	getAllCategories(callback) {
 		mongoose.connect(process.env.STORAGE_APP_URI, { useNewUrlParser: true, reconnectTries: Number.MAX_VALUE, reconnectInterval: 500 }).then(
 			async () => {
@@ -25,6 +10,21 @@ class Database {
 						callback(err, []);
 					} else {
 						callback(null, categories);
+					}
+					mongoose.connection.close();
+				})
+			}
+		).catch(err => console.log(err));
+	}
+
+	getAllProducts(callback) {
+		mongoose.connect(process.env.STORAGE_APP_URI, { useNewUrlParser: true, reconnectTries: Number.MAX_VALUE, reconnectInterval: 500 }).then(
+			async () => {
+				await models.Product.find({}, (err, products) => {
+					if (err) {
+						callback(err, []);
+					} else {
+						callback(null, products);
 					}
 					mongoose.connection.close();
 				})
