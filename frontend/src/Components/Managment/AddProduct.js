@@ -38,10 +38,10 @@ const AddProduct = ({ form }) => {
 			if (!err) {
 				addProduct(values)
 					.then(() => {
-						message.success('Product added successfully.', 1, () => form.resetFields());
+						message.success('Product added successfully.', 2, () => form.resetFields());
 					})
 					.catch(() => {
-						message.error('Something went wrong!', 1, () => form.resetFields());
+						message.error('Something went wrong!', 2, () => form.resetFields());
 					});
 			}
 			setButtonLoading(false);
@@ -90,7 +90,7 @@ const AddProduct = ({ form }) => {
 							)}
 						</Form.Item>
 						<Button type='primary' htmlType='submit' style={{ width: '60%' }} loading={buttonLoading}>
-							Add product
+							Save product
 						</Button>
 					</Form>
 				</StyledForm>

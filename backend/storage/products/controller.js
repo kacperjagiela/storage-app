@@ -23,4 +23,17 @@ module.exports = (app, db) => {
 			}
 		});
 	});
+
+	// Change product
+	app.post('/change-product', (req, res) => {
+		db.changeProduct(req.body, (err, result) => {
+			if (!err && result) {
+				res.status(200);
+				res.send(result);
+			} else {
+				res.send(500);
+				res.send(result);
+			}
+		})
+	})
 }

@@ -10,4 +10,6 @@ export const addCategory = state => (axios.post(`${serverIp}/add-category`, stat
 
 export const addProduct = state => (axios.post(`${serverIp}/add-product`, state));
 
+export const changeProduct = state => (axios.post(`${serverIp}/change-product`, state));
+
 export const removeProduct = id => (axios.delete(`${serverIp}/remove-product`, { data: { productID: id } }));

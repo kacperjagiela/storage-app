@@ -85,6 +85,20 @@ class Database {
 			}
 		).catch(err => console.log(err));
 	}
+
+	changeProduct(state, callback) {
+		mongoose.connect(process.env.STORAGE_APP_URI, { useNewUrlParser: true, reconnectTries: Number.MAX_VALUE, reconnectInterval: 500 }).then(
+			async () => {
+				try {
+					console.log(state);
+					await models.Product.updateOne({ name: state.name }, state);
+					callback(null, true);
+				} catch (e) {
+					callback(true, false);
+				}
+			}
+		).catch(err => console.log(err));
+	}
 }
 
 module.exports = Database;
