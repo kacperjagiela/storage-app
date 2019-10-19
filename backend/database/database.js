@@ -39,26 +39,25 @@ class Database {
 					name: state.name
 				});
 				// get all categories
-				let allCategories;
 				await this.getAllCategories(async (err, categories) => {
 					if (err) {
 						callback(true, false);
 					} else {
-						allCategories = categories;
-					}
-					// check if users entered category already exists
-					// if not save to database
-					if (allCategories.includes(state.name)) {
-						callback(true, false);
-					} else {
-						await category.save(error => {
-							if (error) {
-								callback(true, false);
-							} else {
-								callback(false, true);
-							}
-							mongoose.connection.close();
-						});
+						const allCategories = categories;
+						// check if users entered category already exists
+						// if not save to database
+						if (allCategories.includes(state.name)) {
+							callback(true, false);
+						} else {
+							await category.save(error => {
+								if (error) {
+									callback(true, false);
+								} else {
+									callback(false, true);
+								}
+								mongoose.connection.close();
+							});
+						}
 					}
 				});
 
@@ -77,7 +76,6 @@ class Database {
 				});
 				await product.save(error => {
 					if (!error) {
-						console.log('Added!');
 						callback(null, true);
 					} else {
 						callback(true, false);
